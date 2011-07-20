@@ -92,18 +92,17 @@
                 </executions>
             </plugin>
             <!-- Jar Plugin -->
-            <!--<plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.1</version>
                 <configuration>
                     <archive>
                         <manifestEntries>
-                            <Implementation-Version>${describe}</Implementation-Version>
                         </manifestEntries>
                     </archive>
                 </configuration>
-            </plugin>-->
+            </plugin>
         </plugins>
     </build>
     <dependencies>
