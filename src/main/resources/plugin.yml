@@ -1,7 +1,7 @@
 name: Multiverse-Core
 main: com.onarandombox.MultiverseCore.MultiverseCore
 authors: ['Rigby', 'fernferret']
-version: maven-version-number
+version: version: maven-version-number
 commands:
   mv:
     description: Generic Multiverse Command
@@ -153,5 +153,13 @@ commands:
             /<command> [world]
   mvenv:
     description: Tells the user all possible world types.
+    usage: |
+            /<command>
+  mvv:
+    description: Prints out version invo.
+    usage: |
+            /<command>
+  mvversion:
+    description: Prints out version invo.
     usage: |
             /<command>

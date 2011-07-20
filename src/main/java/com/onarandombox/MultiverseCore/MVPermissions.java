@@ -1,6 +1,5 @@
 package com.onarandombox.MultiverseCore;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -14,7 +13,7 @@ import com.pneumaticraft.commandhandler.PermissionsInterface;
 public class MVPermissions implements PermissionsInterface {
 
     private MultiverseCore plugin;
-    public PermissionHandler permissions = null;
+    private PermissionHandler permissions = null;
 
     /**
      * Constructor FTW
@@ -75,7 +74,7 @@ public class MVPermissions implements PermissionsInterface {
 
         Player player = (Player) sender;
 
-        boolean opFallback = this.plugin.configMV.getBoolean("opfallback", true);
+        boolean opFallback = this.plugin.getConfig().getBoolean("opfallback", true);
         if (this.permissions != null && this.permissions.has(player, node)) {
             // If Permissions is enabled we check against them.
             return true;
@@ -94,5 +93,12 @@ public class MVPermissions implements PermissionsInterface {
         // If they have the op fallback disabled, NO commands will work without a permissions plugin.
         return !isOpRequired && opFallback;
 
+    }
+
+    public String getType() {
+        if (this.permissions != null) {
+            return "Permissions " + this.plugin.getServer().getPluginManager().getPlugin("Permissions").getDescription().getVersion();
+        }
+        return "Bukkit Permissions/OPs.txt";
     }
 }

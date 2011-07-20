@@ -50,8 +50,8 @@ public class MultiverseCore extends JavaPlugin {
     public MVPermissions ph;
 
     // Configurations
-    public Configuration configMV = null;
-    public Configuration configWorlds = null;
+    private Configuration configMV = null;
+    private Configuration configWorlds = null;
 
     // Setup the block/player/entity listener.
     private MVPlayerListener playerListener = new MVPlayerListener(this);;
@@ -67,10 +67,11 @@ public class MultiverseCore extends JavaPlugin {
     // HashMap to contain information relating to the Players.
     private HashMap<String, MVPlayerSession> playerSessions;
     private PurgeWorlds worldPurger;
-    public GenericBank bank = null;
-    public AllPay banker = new AllPay(this, "[Multiverse-Core] ");
+    private GenericBank bank = null;
+    private AllPay banker = new AllPay(this, "[Multiverse-Core] ");
     public static boolean defaultConfigsCreated = false;
     protected MVConfigMigrator migrator = new MVConfigMigrator(this);
+    protected int pluginCount;
 
     @Override
     public void onLoad() {
@@ -79,6 +80,14 @@ public class MultiverseCore extends JavaPlugin {
         // Setup our Debug Log
         debugLog = new DebugLog("Multiverse-Core", getDataFolder() + File.separator + "debug.log");
 
+    }
+    
+    public Configuration getConfig() {
+        return this.configMV;
+    }
+    
+    public GenericBank getBank() {
+        return this.bank;
     }
 
     public void onEnable() {
@@ -91,6 +100,7 @@ public class MultiverseCore extends JavaPlugin {
         this.ph = new MVPermissions(this);
 
         this.bank = this.banker.loadEconPlugin();
+        
         // Setup the command manager
         this.commandHandler = new CommandHandler(this, this.ph);
         // Setup the world purger
@@ -173,6 +183,7 @@ public class MultiverseCore extends JavaPlugin {
      */
     private void registerCommands() {
         // Intro Commands
+        this.commandHandler.registerCommand(new VersionCommand(this));
         this.commandHandler.registerCommand(new ListCommand(this));
         this.commandHandler.registerCommand(new InfoCommand(this));
         this.commandHandler.registerCommand(new CreateCommand(this));
@@ -587,8 +598,39 @@ public class MultiverseCore extends JavaPlugin {
     }
 
     public void removePlayerSession(Player player) {
-        if(this.playerSessions.containsKey(player.getName())) {
+        if (this.playerSessions.containsKey(player.getName())) {
             this.playerSessions.remove(player.getName());
         }
+    }
+
+    /**
+     * Returns the number of plugins that have specifically hooked into core.
+     * 
+     * @return
+     */
+    public int getPluginCount() {
+        return this.pluginCount;
+    }
+
+    /**
+     * Increments the number of plugins that have specifically hooked into core.
+     */
+    public void incrementPluginCount() {
+        this.pluginCount += 1;
+    }
+
+    /**
+     * Decrements the number of plugins that have specifically hooked into core.
+     */
+    public void decrementPluginCount() {
+        this.pluginCount -= 1;
+    }
+
+    public AllPay getBanker() {
+        return this.banker;
+    }
+
+    public void setBank(GenericBank bank) {
+        this.bank = bank;
     }
 }
