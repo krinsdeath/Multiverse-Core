@@ -47,8 +47,8 @@
                         </goals>
                         <configuration>
                             <sources>
-                                <source>${project.basedir}/lib/allpay/src</source>
-                                <source>${project.basedir}/lib/commandhandler/src</source>
+                                <source>${basedir}/lib/allpay/src</source>
+                                <source>${basedir}/lib/commandhandler/src</source>
                             </sources>
                         </configuration>
                     </execution>
