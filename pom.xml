@@ -11,6 +11,12 @@
             <url>http://repo.onarandombox.com/artifactory/repo</url>
         </repository>
     </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>bukkit-plugins</id>
+            <url>http://repo.bukkit.org/artifactory/plugins-release</url>
+        </pluginRepository>
+    </pluginRepositories>
     <build>
         <defaultGoal>clean package</defaultGoal>
         <plugins>
