@@ -5,21 +5,19 @@
     <artifactId>MultiverseCore</artifactId>
     <version>2.0</version>
     <name>Multiverse-Core</name>
+    <description>World Management Plugin</description>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.number>UNKNOWN</project.build.number>
+    </properties>
+
     <repositories>
         <repository>
             <id>OnARandomBox</id>
             <url>http://repo.onarandombox.com/artifactory/repo</url>
         </repository>
     </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>bukkit-plugins</id>
-            <url>http://repo.bukkit.org/artifactory/plugins-release</url>
-        </pluginRepository>
-    </pluginRepositories>
-    <properties>
-        <build.number>UNKNOWN</build.number>
-    </properties>
+
     <build>
         <defaultGoal>clean package</defaultGoal>
         <plugins>
@@ -47,8 +45,8 @@
                         </goals>
                         <configuration>
                             <sources>
-                                <source>${basedir}/lib/allpay/src</source>
-                                <source>${basedir}/lib/commandhandler/src</source>
+                                <source>${project.basedir}/lib/allpay/src</source>
+                                <source>${project.basedir}/lib/commandhandler/src</source>
                             </sources>
                         </configuration>
                     </execution>
@@ -71,7 +69,7 @@
                     <replacements>
                         <replacement>
                             <token>maven-version-number</token>
-                            <value>${project.version}-${build.number}</value>
+                            <value>${project.version}-${project.build.number}</value>
                         </replacement>
                     </replacements>
                 </configuration>
